@@ -1,15 +1,18 @@
-package donkers.kevin.orderdk.domain;
+package donkers.kevin.orderdk.domain.dto;
+
+import donkers.kevin.orderdk.domain.ItemBatch;
 
 import java.util.List;
 
-public class Order {
+public class OrderDto {
+
     private final String orderId;
     private double totalPrice;
     private List<ItemBatch> itemBatchList;
 
-    public Order(String orderId, List<ItemBatch> itemBatchList) {
+    public OrderDto(String orderId, double totalPrice, List<ItemBatch> itemBatchList) {
         this.orderId = orderId;
-        this.totalPrice = calcOrderTotalPrice();
+        this.totalPrice = totalPrice;
         this.itemBatchList = itemBatchList;
     }
 
@@ -23,9 +26,5 @@ public class Order {
 
     public List<ItemBatch> getItemBatchList() {
         return itemBatchList;
-    }
-
-    private double calcOrderTotalPrice(){
-        return itemBatchList.stream().mapToDouble(ItemBatch::getItemBatchPrice).sum();
     }
 }

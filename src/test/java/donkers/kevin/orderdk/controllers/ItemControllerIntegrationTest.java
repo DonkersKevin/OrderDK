@@ -1,10 +1,10 @@
 package donkers.kevin.orderdk.controllers;
 
-import donkers.kevin.orderdk.domain.Customer;
-import donkers.kevin.orderdk.domain.dto.CustomerDto;
-import donkers.kevin.orderdk.repositories.interfaces.CustomerRepository;
-import donkers.kevin.orderdk.services.CustomerService;
+import donkers.kevin.orderdk.domain.Item;
+import donkers.kevin.orderdk.domain.dto.ItemDto;
+import donkers.kevin.orderdk.repositories.interfaces.ItemRepository;
 import donkers.kevin.orderdk.security.SecurityService;
+import donkers.kevin.orderdk.services.ItemService;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.BeforeEach;
@@ -19,36 +19,39 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class CustomerControllerIntegrationTest {
+public class ItemControllerIntegrationTest {
 
     @LocalServerPort
     private int port;
 
     @Autowired
-    CustomerRepository customerRepository;
+    ItemRepository itemRepository;
 
     @Autowired
-    CustomerService customerService;
+    ItemService itemService;
 
     @Autowired
     SecurityService securityService;
 
     @BeforeEach
     void init() {
-        //Hardcoded
-        //   customerRepository.addCustomer(new Customer("1", "Mr", "Smith", "MrSmith@gmail.com", "Manorstreet 22", "0498 76 87 98"));
-        customerRepository.addCustomer(new Customer("2", "Mrs", "Smith", "MsSmith@gmail.com", "Manorstreet 22", "0473 63 33 33"));
+        itemRepository.addItem(new Item("1", "Banana","A long yellow fruit",2.00,10));
+        itemRepository.addItem(new Item("2", "Orange","A round orange fruit",3.00,3));
+        itemRepository.addItem(new Item("3", "Apple","A green or red fruit",1.50,4));
+        itemRepository.addItem(new Item("4", "Kiwi","A furry fruit",0.75,100));
+        itemRepository.addItem(new Item("5", "Of your labours","Dedication",25.00,1));
     }
 
     @Test
-    void getAllCustomers_HappyPath() {
+    void getAllItems_HappyPath() {
 
-        List<CustomerDto> expectedCustomers = List.of(
-                new CustomerDto("1", "Mr", "Smith", "MrSmith@gmail.com", "Manorstreet 22", "0498 76 87 98"),
-                new CustomerDto("2", "Mrs", "Smith", "MsSmith@gmail.com", "Manorstreet 22", "0473 63 33 33"));
+        List<ItemDto> expectedItems = List.of(
+             //   new ItemDto(),
+             //   new ItemDto();
+        );
 
 
-        CustomerDto[] result = RestAssured
+        ItemDto[] result = RestAssured
                 .given()
                 .baseUri("http://localhost")
                 .port(port)
@@ -61,18 +64,18 @@ class CustomerControllerIntegrationTest {
                 .assertThat()
                 .statusCode(HttpStatus.OK.value())
                 .extract()
-                .as(CustomerDto[].class);
+                .as(ItemDto[].class);
 
-        assertThat(List.of(result)).isEqualTo(expectedCustomers);
+        assertThat(List.of(result)).isEqualTo(expectedItems);
 
     }
 
     @Test
-    void getCustomerByID_HappyPath() {
-        CustomerDto expectedCustomers =
-                new CustomerDto("1", "Mr", "Smith", "MrSmith@gmail.com", "Manorstreet 22", "0498 76 87 98");
+    void getItemByID_HappyPath() {
+      //  ItemDto expectedItems =
+           //     new ItemDto();
 
-        CustomerDto result = RestAssured
+        ItemDto result = RestAssured
                 .given()
                 .baseUri("http://localhost")
                 .port(port)
@@ -85,16 +88,16 @@ class CustomerControllerIntegrationTest {
                 .assertThat()
                 .statusCode(HttpStatus.OK.value())
                 .extract()
-                .as(CustomerDto.class);
+                .as(ItemDto.class);
 
-        assertThat(result).isEqualTo(expectedCustomers);
+     //   assertThat(result).isEqualTo(expectedItems);
     }
 
 
     @Test
-    void createCustomer_HappyPath() {
-        CustomerDto expectedCustomers =
-                new CustomerDto("1", "Mr", "Smithy", "MrSmithy@gmail.com", "Housestreet 22", "0498 76 87 98");
+    void createItem_HappyPath() {
+     //   ItemDto expectedItems =
+       //         new ItemDto("1", "Mr", "Smithy", "MrSmithy@gmail.com", "Housestreet 22", "0498 76 87 98");
 
         String requestBody =
                 """
@@ -108,7 +111,7 @@ class CustomerControllerIntegrationTest {
                          }
                         """;
 
-        CustomerDto result = RestAssured
+        ItemDto result = RestAssured
                 .given()
                 .contentType(ContentType.JSON)
                 .baseUri("http://localhost")
@@ -123,9 +126,8 @@ class CustomerControllerIntegrationTest {
                 //       .assertThat()
                 //       .statusCode(HttpStatus.CREATED.value())
                 .extract()
-                .as(CustomerDto.class);
+                .as(ItemDto.class);
 
-        assertThat(result).isEqualTo(expectedCustomers);
+      //  assertThat(result).isEqualTo(expectedItems);
     }
-
 }

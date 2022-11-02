@@ -2,7 +2,7 @@ package donkers.kevin.orderdk.controllers;
 
 import donkers.kevin.orderdk.domain.dto.ItemDto;
 import donkers.kevin.orderdk.services.ItemService;
-import donkers.kevin.orderdk.services.SecurityService;
+import donkers.kevin.orderdk.security.SecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
