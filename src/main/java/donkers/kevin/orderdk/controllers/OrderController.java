@@ -7,11 +7,9 @@ import donkers.kevin.orderdk.security.SecurityService;
 import donkers.kevin.orderdk.services.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,6 +29,7 @@ public class OrderController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<OrderDto> getAllOrders(){
+        log.info("Getting all orders...");
         return orderService.getAllOrders();
     }
 
@@ -40,10 +39,11 @@ public class OrderController {
         return null;
     }
 
-    @PostMapping
-    public OrderDto createOrder(){
-        //Todo
-        return null;
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+    public OrderDto createOrder(@RequestBody OrderDto orderDto){
+        log.info("Creating new Order...");
+        return orderService.createOrder(orderDto);
     }
 
     @PostMapping(value = "/{orderId}")

@@ -5,6 +5,7 @@ import donkers.kevin.orderdk.services.ItemService;
 import donkers.kevin.orderdk.security.SecurityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,18 +23,21 @@ public class ItemController {
         this.securityService = securityService;
     }
 
-    @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ItemDto getItemById(@PathVariable String id){
-        log.info("Getting item by id : " + id);
-        return itemService.getItemById(id);
-    }
-
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<ItemDto> getAllItems(){
         log.info("Getting all items...");
         return itemService.getAllItems();
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping(value = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ItemDto getItemById(@PathVariable String id){
+        log.info("Getting item by id : " + id);
+        return itemService.getItemById(id);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/add",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ItemDto addItem(@RequestBody ItemDto itemDto){
         log.info("Adding new item...");

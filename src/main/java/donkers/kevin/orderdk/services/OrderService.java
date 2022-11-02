@@ -23,7 +23,7 @@ public class OrderService {
         return orderMapper.orderListToDtoList(orderRepository.getAllOrders());
     }
 
-    public OrderDto OrderToDto(Order order){
-        return orderMapper.toOrderDto(order);
+    public OrderDto createOrder(OrderDto orderDto) {
+        return orderMapper.toOrderDto(orderRepository.addOrder(orderMapper.dtoToOrder(orderDto)));
     }
 }

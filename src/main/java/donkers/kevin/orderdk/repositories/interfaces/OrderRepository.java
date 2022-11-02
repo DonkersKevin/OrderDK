@@ -12,7 +12,7 @@ public interface OrderRepository {
 
     public Order getOrderById(String id);
 
-    public Order createOrder(Order order);
+    public Order addOrder(Order order);
 
     public Order reCreateOrder(String orderId);
 }

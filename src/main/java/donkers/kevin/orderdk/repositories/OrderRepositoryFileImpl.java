@@ -1,5 +1,6 @@
 package donkers.kevin.orderdk.repositories;
 
+import donkers.kevin.orderdk.domain.Item;
 import donkers.kevin.orderdk.domain.ItemBatch;
 import donkers.kevin.orderdk.domain.Order;
 import donkers.kevin.orderdk.repositories.interfaces.OrderRepository;
@@ -11,33 +12,37 @@ import java.util.List;
 @Repository
 public class OrderRepositoryFileImpl implements OrderRepository {
 
-    private List<Order> orders;
+    private List<Order> orderList;
 
     public OrderRepositoryFileImpl() {
-        this.orders = new ArrayList<>(List.of(
-                new Order("1", new ArrayList<ItemBatch>())
+        this.orderList = new ArrayList<>(List.of(
+                new Order("0", List.of(
+                        new ItemBatch(new Item("1", "SamuraiPloes","A self sharpening knife", 50.0,4),2)
+                ))
             )
         );
     }
 
     @Override
     public List<Order> getAllOrders() {
-        return null;
+        return orderList;
     }
 
     @Override
     public List<Order> getAllMyOrders(String userId) {
+        //Todo
         return null;
     }
 
     @Override
     public Order getOrderById(String id) {
-        return null;
+        return orderList.stream().filter(o -> o.getOrderId().equals(id)).findFirst().orElseThrow();
     }
 
     @Override
-    public Order createOrder(Order order) {
-        return null;
+    public Order addOrder(Order order) {
+        orderList.add(order);
+        return order;
     }
 
     @Override
