@@ -1,16 +1,16 @@
 package donkers.kevin.orderdk.security;
 
-import donkers.kevin.orderdk.exceptions.UnauthorizatedException;
+import donkers.kevin.orderdk.exceptions.UnauthorizedException;
 import donkers.kevin.orderdk.exceptions.UnknownUserException;
 import donkers.kevin.orderdk.exceptions.WrongPassWordException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
 
 import java.util.Base64;
 
-@Service
+//@Service
 public class SecurityService {
+    /*
 
     private final Logger log = LoggerFactory.getLogger(SecurityService.class);
 
@@ -33,7 +33,7 @@ public class SecurityService {
         }
         if(!user.isAllowedTo(permission)){
             log.error("User " + usernamePassword.getUsername() + " does not have acces to " + permission);
-            throw new UnauthorizatedException();
+            throw new UnauthorizedException();
         }
     }
 
@@ -43,4 +43,6 @@ public class SecurityService {
         String password = decodedUsernameAndPassword.substring(decodedUsernameAndPassword.indexOf(":"+1));
         return new UsernamePassword(username,password);
     }
+
+     */
 }

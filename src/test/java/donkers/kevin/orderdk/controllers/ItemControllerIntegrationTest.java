@@ -1,26 +1,12 @@
 package donkers.kevin.orderdk.controllers;
 
-import donkers.kevin.orderdk.domain.Item;
-import donkers.kevin.orderdk.domain.dto.ItemDto;
-import donkers.kevin.orderdk.repositories.interfaces.ItemRepository;
-import donkers.kevin.orderdk.security.SecurityService;
-import donkers.kevin.orderdk.services.ItemService;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ItemControllerIntegrationTest {
-
+/*
     @LocalServerPort
     private int port;
 
@@ -130,4 +116,6 @@ public class ItemControllerIntegrationTest {
 
       //  assertThat(result).isEqualTo(expectedItems);
     }
+
+ */
 }

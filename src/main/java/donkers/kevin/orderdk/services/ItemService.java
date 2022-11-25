@@ -1,11 +1,15 @@
 package donkers.kevin.orderdk.services;
 
-import donkers.kevin.orderdk.domain.dto.ItemDto;
-import donkers.kevin.orderdk.domain.dto.ItemMapper;
-import donkers.kevin.orderdk.repositories.interfaces.ItemRepository;
+
+import donkers.kevin.orderdk.domain.Item.dto.ItemMapper;
+import donkers.kevin.orderdk.domain.Item.dto.ItemResponse;
+import donkers.kevin.orderdk.domain.Item.dto.NewItem;
+import donkers.kevin.orderdk.exceptions.NoSuchItemException;
+import donkers.kevin.orderdk.repositories.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 @Service
 public class ItemService {
@@ -18,15 +22,16 @@ public class ItemService {
         this.itemMapper = itemMapper;
     }
 
-    public ItemDto getItemById(String id) {
-        return itemMapper.toItemDto(itemRepository.getItemById(id));
+    public ItemResponse getItemById(String id) {
+        return itemMapper.toItemResponse(itemRepository.findById(Long.valueOf(id)).orElseThrow(NoSuchItemException::new));
     }
 
-    public ItemDto addItem(ItemDto itemDto) {
-        return itemMapper.toItemDto(itemRepository.addItem(itemMapper.dtoToItem(itemDto)));
+    public ItemResponse addItem(NewItem newItem) {
+        //checkItemRequiredFields(newItem);
+        return itemMapper.toItemResponse(itemRepository.save(itemMapper.toItem(newItem)));
     }
 
-    public List<ItemDto> getAllItems() {
-        return itemMapper.listToDtoList(itemRepository.getAllItems());
+    public List<ItemResponse> getAllItems() {
+        return itemMapper.toItemResponseList(itemRepository.findAll());
     }
 }

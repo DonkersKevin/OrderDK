@@ -1,9 +1,8 @@
 package donkers.kevin.orderdk.controllers;
 
-import donkers.kevin.orderdk.domain.Order;
-import donkers.kevin.orderdk.domain.dto.OrderDto;
-import donkers.kevin.orderdk.repositories.interfaces.OrderRepository;
-import donkers.kevin.orderdk.security.SecurityService;
+import donkers.kevin.orderdk.domain.Order.dto.NewOrder;
+import donkers.kevin.orderdk.domain.Order.dto.OrderDto;
+import donkers.kevin.orderdk.domain.Order.dto.OrderResponse;
 import donkers.kevin.orderdk.services.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,31 +19,32 @@ public class OrderController {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private final OrderService orderService;
 
-    private final SecurityService securityService;
-
-    public OrderController(OrderService orderService, SecurityService securityService) {
+    public OrderController(OrderService orderService) {
         this.orderService = orderService;
-        this.securityService = securityService;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<OrderDto> getAllOrders(){
+    public List<OrderResponse> getAllOrders(){
         log.info("Getting all orders...");
         return orderService.getAllOrders();
     }
 
+    /*
     @GetMapping
     public List<OrderDto> getMyOrders(){
         //Todo
         return null;
     }
 
+     */
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(value = "/add", produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public OrderDto createOrder(@RequestBody OrderDto orderDto){
+    public OrderResponse createOrder(@RequestBody NewOrder newOrder){
         log.info("Creating new Order...");
-        return orderService.createOrder(orderDto);
+        return orderService.createOrder(newOrder);
     }
+
 
     @PostMapping(value = "/{orderId}")
     public OrderDto reOrder(){
