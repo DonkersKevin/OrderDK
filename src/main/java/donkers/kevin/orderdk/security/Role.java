@@ -32,7 +32,13 @@ public enum Role {
         this.permissions = Lists.newArrayList(permissions);
     }
 
+    public List<Permission> getPermissions() {
+        return permissions;
+    }
+
     public String getLabel() {
         return label;
     }
 }
+
+

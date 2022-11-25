@@ -1,20 +1,6 @@
 package donkers.kevin.orderdk.controllers;
 
-import donkers.kevin.orderdk.domain.Customer.Customer;
-import donkers.kevin.orderdk.domain.Customer.dto.CustomerResponse;
-import donkers.kevin.orderdk.repositories.CustomerRepository;
-import donkers.kevin.orderdk.services.CustomerService;
-import donkers.kevin.orderdk.security.SecurityService;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,4 +1,4 @@
-package donkers.kevin.orderdk.security;
+package donkers.kevin.orderdk.security.basic;
 
 import donkers.kevin.orderdk.exceptions.UnauthorizedException;
 import donkers.kevin.orderdk.exceptions.UnknownUserException;

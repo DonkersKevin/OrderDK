@@ -1,4 +1,4 @@
-package donkers.kevin.orderdk.security;
+package donkers.kevin.orderdk.security.basic;
 
 public class UsernamePassword {
 
