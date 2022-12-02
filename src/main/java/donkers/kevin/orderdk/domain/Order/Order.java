@@ -1,6 +1,7 @@
 package donkers.kevin.orderdk.domain.Order;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
@@ -8,15 +9,16 @@ import java.util.List;
 @Entity
 @Table(name = "ORDERS")
 @Data
+@ToString
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "totalprice")
+    @Column(name = "total_price")
     private double totalPrice;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<ItemBatch> itemBatchList;
 
     public Order() {
@@ -24,13 +26,13 @@ public class Order {
 
     public Order(Long id, List<ItemBatch> itemBatchList) {
         this.id = id;
-        this.totalPrice = calcOrderTotalPrice();
         this.itemBatchList = itemBatchList;
+        this.totalPrice = calcOrderTotalPrice();
     }
 
     public Order(List<ItemBatch> itemBatchList) {
-        this.totalPrice = calcOrderTotalPrice();
         this.itemBatchList = itemBatchList;
+        this.totalPrice = calcOrderTotalPrice();
     }
 
     private double calcOrderTotalPrice(){

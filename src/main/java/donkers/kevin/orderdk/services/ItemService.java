@@ -1,6 +1,5 @@
 package donkers.kevin.orderdk.services;
 
-
 import donkers.kevin.orderdk.domain.Item.dto.ItemMapper;
 import donkers.kevin.orderdk.domain.Item.dto.ItemResponse;
 import donkers.kevin.orderdk.domain.Item.dto.NewItem;
@@ -10,11 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 @Service
 public class ItemService {
     private final ItemRepository itemRepository;
-
     private final ItemMapper itemMapper;
 
     public ItemService(ItemRepository itemRepository, ItemMapper itemMapper) {
@@ -27,7 +24,7 @@ public class ItemService {
     }
 
     public ItemResponse addItem(NewItem newItem) {
-        //checkItemRequiredFields(newItem);
+        //Todo checkItemRequiredFields(newItem);
         return itemMapper.toItemResponse(itemRepository.save(itemMapper.toItem(newItem)));
     }
 

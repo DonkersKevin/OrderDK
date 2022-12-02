@@ -21,26 +21,32 @@ values ('Belgium', '175', 'Brussel', '1030', 'Boulevard de la distance');
 
 
 
-INSERT INTO customers (email, first_name, last_name, country_code, phone_number, fk_address_id)
-VALUES ('stefbemindt@switchfully.com', 'Stef', 'Bemindt', 'BELGIUM', '0478451278', 1);
+INSERT INTO customers (email, first_name, last_name, country_code, phone_number, security_role, username,
+                       fk_address_id)
+VALUES ('stefbemindt@switchfully.com', 'Stef', 'Bemindt', 'BELGIUM', '0478451278', 'ADMIN', 'stef', 1);
 
-INSERT INTO customers (email, first_name, last_name, country_code, phone_number, fk_address_id)
-VALUES ('janbroeckx@switchfully.com', 'Jan', 'Broeckx', 'BELGIUM', '0478451248', 2);
+INSERT INTO customers (email, first_name, last_name, country_code, phone_number, security_role, username,
+                       fk_address_id)
+VALUES ('janbroeckx@switchfully.com', 'Jan', 'Broeckx', 'BELGIUM', '0478451248', 'ADMIN', 'jan', 2);
 
-INSERT INTO customers (email, first_name, last_name, country_code, phone_number, fk_address_id)
-VALUES ('rubenfobe@switchfully.com', 'Ruben', 'Fobe', 'BELGIUM', '0478451478', 3);
+INSERT INTO customers (email, first_name, last_name, country_code, phone_number, security_role, username,
+                       fk_address_id)
+VALUES ('rubenfobe@switchfully.com', 'Ruben', 'Fobe', 'BELGIUM', '0478451478', 'ADMIN', 'ruben', 3);
 
-INSERT INTO customers (email, first_name, last_name, country_code, phone_number, fk_address_id)
-VALUES ('stijnschouppe@switchfully.com', 'Stijn', 'Schouppe', 'BELGIUM', '0496038353', 4);
+INSERT INTO customers (email, first_name, last_name, country_code, phone_number, security_role, username,
+                       fk_address_id)
+VALUES ('stijnschouppe@switchfully.com', 'Stijn', 'Schouppe', 'BELGIUM', '0496038353', 'ADMIN', 'stijn', 4);
 
-INSERT INTO customers (email, first_name, last_name, country_code, phone_number, fk_address_id)
-VALUES ('kevindonkers@switchfully.com', 'Kevin', 'Donkers', 'BELGIUM', '0478451999', 5);
+INSERT INTO customers (email, first_name, last_name, country_code, phone_number, security_role, username,
+                       fk_address_id)
+VALUES ('kevindonkers@switchfully.com', 'Kevin', 'Donkers', 'BELGIUM', '0478451999', 'ADMIN', 'kevin', 5);
 
-INSERT INTO customers (email, first_name, last_name, country_code, phone_number, fk_address_id)
+INSERT INTO customers (email, first_name, last_name, country_code, phone_number, security_role, username,
+                       fk_address_id)
 VALUES ('haroldvandoo@switchfully.com', 'Harold', 'van Doorslaer', 'BELGIUM', '0478451143',
-        6);
-INSERT INTO customers (email, first_name, last_name, country_code, phone_number, fk_address_id)
-VALUES ('timvercruysse@switchfully.com', 'Tim', 'Vercruysse', 'BELGIUM', '0478478278', 7);
+        'ADMIN', 'harold', 6);
+INSERT INTO customers (email, first_name, last_name, country_code, phone_number, security_role, username, fk_address_id)
+VALUES ('timvercruysse@switchfully.com', 'Tim', 'Vercruysse', 'BELGIUM', '0478478278', 'CUSTOMER', 'tim', 7);
 
 
 
@@ -58,4 +64,13 @@ values ('An orange fruit', 'Orange', 'EUR', 1.5, 9);
 
 insert into items(item_description, item_name, currency, unit_price, stock)
 values ('A smelly fruit', 'Durian', 'EUR', 7.5, 1);
+
+insert into items(item_description, item_name, currency, unit_price, stock)
+values ('The berriest of the berry', 'Strawberry', 'EUR', 4.5, 20);
+
+insert into items(item_description, item_name, currency, unit_price, stock)
+values ('A vegetable fruit', 'Tomato', 'EUR', 0.75, 100);
+
+insert into items(item_description, item_name, currency, unit_price, stock)
+values ('One flaming homosexual', 'Dillan the fruit', 'EUR', 500.0, 2);
 

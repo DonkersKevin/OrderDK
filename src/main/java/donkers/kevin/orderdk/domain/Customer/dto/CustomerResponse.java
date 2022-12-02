@@ -2,8 +2,11 @@ package donkers.kevin.orderdk.domain.Customer.dto;
 
 import donkers.kevin.orderdk.domain.Customer.Address.Address;
 import donkers.kevin.orderdk.domain.Customer.phonenumber.PhoneNumber;
+import lombok.Builder;
+import lombok.Getter;
 
-
+@Getter
+@Builder
 public class CustomerResponse {
 
     private Long id;
@@ -20,30 +23,6 @@ public class CustomerResponse {
         this.email = email;
         this.address = address;
         this.phoneNumber = phoneNumber;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Address getAddress() {
-        return address;
-    }
-
-    public PhoneNumber getPhoneNumber() {
-        return phoneNumber;
     }
 }
 

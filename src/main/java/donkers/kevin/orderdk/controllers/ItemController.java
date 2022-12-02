@@ -4,10 +4,10 @@ package donkers.kevin.orderdk.controllers;
 import donkers.kevin.orderdk.domain.Item.dto.ItemResponse;
 import donkers.kevin.orderdk.domain.Item.dto.NewItem;
 import donkers.kevin.orderdk.services.ItemService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +15,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/items")
+@Slf4j
 public class ItemController {
-    private final Logger log = LoggerFactory.getLogger(getClass());
     private final ItemService itemService;
 
     public ItemController(ItemService itemService) {
@@ -38,7 +38,8 @@ public class ItemController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(value = "/add",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasAuthority('CAN_ADD_ITEM')")
     public ItemResponse addItem(@RequestBody NewItem newItem){
         log.info("Adding new item...");
         return itemService.addItem(newItem);

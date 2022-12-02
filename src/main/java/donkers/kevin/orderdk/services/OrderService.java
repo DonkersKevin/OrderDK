@@ -1,8 +1,8 @@
 package donkers.kevin.orderdk.services;
 
-import donkers.kevin.orderdk.domain.Order.dto.NewOrder;
-import donkers.kevin.orderdk.domain.Order.dto.OrderMapper;
-import donkers.kevin.orderdk.domain.Order.dto.OrderResponse;
+import donkers.kevin.orderdk.domain.Order.dto.order.NewOrder;
+import donkers.kevin.orderdk.domain.Order.dto.order.OrderMapper;
+import donkers.kevin.orderdk.domain.Order.dto.order.OrderResponse;
 import donkers.kevin.orderdk.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public class OrderService {
     private OrderRepository orderRepository;
-
     private OrderMapper orderMapper;
 
     public OrderService(OrderRepository orderRepository, OrderMapper orderMapper) {
