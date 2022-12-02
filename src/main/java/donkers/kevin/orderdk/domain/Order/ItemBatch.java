@@ -2,7 +2,6 @@ package donkers.kevin.orderdk.domain.Order;
 
 import donkers.kevin.orderdk.domain.Item.Item;
 import lombok.Getter;
-import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -22,10 +21,6 @@ public class ItemBatch {
     private int amount;
     private LocalDate shippingDate;
     private double itemBatchPrice;
-
-    @ManyToOne
-    @JoinColumn(name = "fk_order_id")
-    private Order order;
 
     public ItemBatch() {
     }

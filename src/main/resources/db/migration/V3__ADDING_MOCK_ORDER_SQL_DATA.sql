@@ -1,8 +1,8 @@
-Insert into orders (total_price)
-values (10);
+Insert into orders (total_price, fk_customer_id)
+values (10, 1);
 
-Insert into orders (total_price)
-values (20);
+Insert into orders (total_price, fk_customer_id)
+values (20, 3);
 
 
 insert into itembatches(amount, item_batch_price, shipping_date, fk_item_id, fk_order_id)

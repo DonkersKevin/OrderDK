@@ -1,5 +1,6 @@
 package donkers.kevin.orderdk.domain.Order;
 
+import donkers.kevin.orderdk.domain.Customer.Customer;
 import lombok.Data;
 import lombok.ToString;
 
@@ -18,21 +19,28 @@ public class Order {
     @Column(name = "total_price")
     private double totalPrice;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "fk_order_id")
     private List<ItemBatch> itemBatchList;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_customer_id")
+    private Customer customer;
 
     public Order() {
     }
 
-    public Order(Long id, List<ItemBatch> itemBatchList) {
+    public Order(Long id, List<ItemBatch> itemBatchList, Customer customer) {
         this.id = id;
         this.itemBatchList = itemBatchList;
         this.totalPrice = calcOrderTotalPrice();
+        this.customer = customer;
     }
 
-    public Order(List<ItemBatch> itemBatchList) {
+    public Order(List<ItemBatch> itemBatchList, Customer customer) {
         this.itemBatchList = itemBatchList;
         this.totalPrice = calcOrderTotalPrice();
+        this.customer = customer;
     }
 
     private double calcOrderTotalPrice(){

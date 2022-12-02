@@ -8,4 +8,14 @@ import lombok.Getter;
 public class NewItemBatch {
     private Long itemId;
     private int amount;
+
+    @Override
+    public String toString() {
+        return "NewItemBatch{" +
+                "itemId=" + itemId +
+                ", amount=" + amount +
+                '}';
+    }
 }
+
+

@@ -45,6 +45,7 @@ public class OrderController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
     public OrderResponse createOrder(@RequestBody NewOrder newOrder){
         log.info("Creating new Order...");
+        System.out.println(newOrder);
         return orderService.createOrder(newOrder);
     }
 

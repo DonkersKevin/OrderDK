@@ -8,9 +8,18 @@ import java.util.List;
 @Getter
 public class NewOrder {
     private List<NewItemBatch> newItemBatchList;
+    private Long CustomerId;
+    public NewOrder(List<NewItemBatch> newItemBatchList, Long customerId) {
+        this.newItemBatchList = newItemBatchList;
+        CustomerId = customerId;
+    }
 
-    public NewOrder(List<NewItemBatch> itemBatchList) {
-        this.newItemBatchList = itemBatchList;
+    @Override
+    public String toString() {
+        return "NewOrder{" +
+                "newItemBatchList=" + newItemBatchList +
+                ", CustomerId=" + CustomerId +
+                '}';
     }
 }
 
